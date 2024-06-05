@@ -8,7 +8,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 from telethon.utils import get_display_name
 
-from . import wolfub
+from . import wolub
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
@@ -42,7 +42,7 @@ UNBAN_RIGHTS = ChatBannedRights(
     embed_links=None,
 )
 
-wolf_dev = (5893094425, 6785015029)
+wol_dev = (5893094425, 6785015029)
 KTMZ = gvarstatus("Z_KTM") or "كتم"
 
 @wolfub.nas_cmd(
@@ -56,31 +56,31 @@ KTMZ = gvarstatus("Z_KTM") or "كتم"
 )
 async def nasgban(event):  # sourcery no-metrics
     "To ban user in every group where you are admin."
-    zede = await edit_or_reply(event, "**╮ ❐... جـاࢪِ حـظـࢪ الشخـص عـام**")
+    wolf = await edit_or_reply(event, "**╮ ❐... جـاࢪِ حـظـࢪ الشخـص عـام**")
     start = datetime.now()
-    user, reason = await get_user_from_event(event, zede)
+    user, reason = await get_user_from_event(event, wolf)
     if not user:
         return
-    if user.id == zedub.uid:
-        return await edit_delete(zede, "**⎉╎عـذراً ..لا استطيـع حظـࢪ نفسـي **")
-    if user.id in nas_dev:
-        return await edit_delete(zede, "**⎉╎عـذراً ..لا استطيـع حظـࢪ احـد المطـورين عـام **")
-    if user.id == 925972505 or user.id == 1895219306 or user.id == 2095357462:
-        return await edit_delete(zede, "**⎉╎عـذراً ..لا استطيـع حظـࢪ مطـور السـورس عـام **")
+    if user.id == wolfub.uid:
+        return await edit_delete(wolf, "**⎉╎عـذراً ..لا استطيـع حظـࢪ نفسـي **")
+    if user.id in wol_dev:
+        return await edit_delete(wolf, "**⎉╎عـذراً ..لا استطيـع حظـࢪ احـد المطـورين عـام **")
+    if user.id == 6807574910 :
+        return await edit_delete(wolf, "**⎉╎عـذراً ..لا استطيـع حظـࢪ مطـور السـورس عـام **")
 
 
     if gban_sql.is_gbanned(user.id):
-        await zede.edit(
+        await wolf.edit(
             f"**⎉╎المسـتخـدم ↠** [{user.first_name}](tg://user?id={user.id}) \n**⎉╎مـوجــود بالفعــل فـي ↠ قائمـة المحظــورين عــام**"
         )
     else:
-        gban_sql.zedgban(user.id, reason)
+        gban_sql.wolgban(user.id, reason)
     san = await admin_groups(event.client)
     count = 0
     sandy = len(san)
     if sandy == 0:
-        return await edit_delete(zede, "**⎉╎عــذراً .. يجـب ان تكــون مشـرفـاً فـي مجموعـة واحـده ع الأقــل **")
-    await zede.edit(
+        return await edit_delete(wolf, "**⎉╎عــذراً .. يجـب ان تكــون مشـرفـاً فـي مجموعـة واحـده ع الأقــل **")
+    await wolf.edit(
         f"**⎉╎جـاري بـدء حظـر ↠** [{user.first_name}](tg://user?id={user.id}) **\n\n**⎉╎مـن ↠ {len(san)} كــروب**"
     )
     for i in range(sandy):
@@ -95,13 +95,13 @@ async def nasgban(event):  # sourcery no-metrics
                 f"**⎉╎عــذراً .. لـيس لـديــك صـلاحيـات فـي ↠**\n**⎉╎كــروب :** {get_display_name(achat)}(`{achat.id}`)",
             )
     end = datetime.now()
-    zedtaken = (end - start).seconds
+    woltaken = (end - start).seconds
     if reason:
-        await zede.edit(
-            f"**⎉╎المستخـدم :** [{user.first_name}](tg://user?id={user.id})\n\n**⎉╎تم حـظـࢪه عـام مـن {count} كــࢪوب خـلال {zedtaken} ثـانيـه**\n**⎉╎السـبب :** {reason}"
+        await wol.edit(
+            f"**⎉╎المستخـدم :** [{user.first_name}](tg://user?id={user.id})\n\n**⎉╎تم حـظـࢪه عـام مـن {count} كــࢪوب خـلال {woltaken} ثـانيـه**\n**⎉╎السـبب :** {reason}"
         )
     else:
-        await zede.edit(
+        await wolf.edit(
             f"**╮ ❐... الشخـص :** [{user.first_name}](tg://user?id={user.id})\n\n**╮ ❐... تـم حـظـࢪه عـام مـن {count} كــࢪوب خـلال {zedtaken} ثـانيـه**"
         )
     if BOTLOG and count != 0:
