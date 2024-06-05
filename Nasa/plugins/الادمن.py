@@ -8,14 +8,14 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
 from telethon.utils import get_display_name
 
-from . import nasub
+from . import wolfub
 from ..core.managers import edit_delete, edit_or_reply
 from ..helpers.utils import _format
 from ..sql_helper.globals import addgvar, delgvar, gvarstatus
 from ..sql_helper.echo_sql import addecho, get_all_echos, get_echos, is_echo, remove_all_echos, remove_echo, remove_echos
 from ..sql_helper import gban_sql_helper as gban_sql
 from ..sql_helper.mute_sql import is_muted, mute, unmute
-from ..utils import nas_Dev
+from ..utils import wolf_Dev
 from . import BOTLOG, BOTLOG_CHATID, admin_groups, get_user_from_event
 plugin_category = "الادمن"
 
@@ -42,10 +42,10 @@ UNBAN_RIGHTS = ChatBannedRights(
     embed_links=None,
 )
 
-nas_dev = (5893094425, 6785015029)
+wolf_dev = (5893094425, 6785015029)
 KTMZ = gvarstatus("Z_KTM") or "كتم"
 
-@nasub.nas_cmd(
+@wolfub.nas_cmd(
     pattern="ح عام(?:\s|$)([\s\S]*)",
     command=("gban", plugin_category),
     info={
